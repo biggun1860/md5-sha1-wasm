@@ -17,7 +17,7 @@ void EMSCRIPTEN_KEEPALIVE sha1_init()
 void EMSCRIPTEN_KEEPALIVE sha1_update(const char *data)
 {
     size_t len = strlen(data);
-    SHA1Update(&g_shactx, data, len);
+    SHA1Update(&g_shactx, (const unsigned char *)data, len);
 }
 
 char* EMSCRIPTEN_KEEPALIVE sha1_final()
