@@ -10,14 +10,39 @@ WebAssembly implemention of md5 and sha1
   - `./emsdk install sdk-incoming-64bit`
 - [Binaryen](https://github.com/WebAssembly/binaryen)
 
-## Usage
+## Makefile
 
 ```
 $ make
 $ python -m SimpleHTTPServer 8000
 ```
 
-Open URL <http://localhost:8000/bin/md5.html> in your browser.
+## Usage
+```
+//wrap function
+const md5_hex = Module.cwrap('md5_hex','string',['string']);
+const md5_init = Module.cwrap('md5_init');
+const md5_update = Module.cwrap('md5_update',null,['string']);
+const md5_final = Module.cwrap('md5_final','string');
+const sha1_init = Module.cwrap('sha1_init');
+const sha1_update = Module.cwrap('sha1_update',null,['string']);
+const sha1_final = Module.cwrap('sha1_final','string');
+
+console.log(md5_hex('test'));
+
+md5_init();
+md5_update('test');
+md5_update('test2');
+console.log(md5_final());
+
+sha1_init();
+sha1_update('test');
+sha1_update('test2');
+console.log(sha1_final());
+
+```
+
+Open URL <http://localhost:8000/bin/md5-sha1.html> in your browser.
 
 ## License
 Public Domain
