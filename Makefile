@@ -1,10 +1,10 @@
 CC      := emcc
-CFLAGS  := -O2
-LDFLAGS := -s "BINARYEN=1"
+CFLAGS  := -O3
+LDFLAGS := -s "WASM=1"
 SRCDIR  := ./src
 OBJDIR  := ./obj
 BINDIR  := ./bin
-TARGET  := $(BINDIR)/md5.wasm
+TARGET  := $(BINDIR)/md5-sha1.wasm
 SOURCES := $(wildcard $(SRCDIR)/*.c)
 OBJECTS := $(addprefix $(OBJDIR)/, $(SOURCES:$(SRCDIR)/%.c=%.o))
 
